@@ -199,15 +199,15 @@ if (price_usd >= 1) {
 }
 
 cryptoData.forEach((element) => {
-    // crear el el contenedort de la card
+    // crear  el contenedort de la card
     const tarjetaCripto = document.createElement ("div")
     tarjetaCripto.classList.add ("cripto-item");
 
-    // 
+    // creamos un párrafo con los elementos que queremos mostrar
 	const p = document.createElement("p");
 	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd} - ${formatPrice(element.price_usd)}`;
 	
-    // 
+    // mostramos la imagen alternativa por si da error 
 	const imagen = document.createElement("img");
 	imagen.src = element.image;
 	imagen.alt = `${element.name} logo`;
