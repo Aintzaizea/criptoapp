@@ -181,9 +181,22 @@ const cryptoData = [
 	},
 ];
 
-const container = document.querySelector ("#container");
-cryptoData.forEach(element => {
-    const p = document.createElement ("p");
-    p.textContent = `${element.image} - ${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd}`;
-    container.appendChild (p);
+const container = document.querySelector("#container");
+const fallbackImage = "./img/moneda.png";
+
+cryptoData.forEach((element) => {
+	const p = document.createElement("p");
+	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd}`;
+	container.appendChild(p);
+
+	const imagen = document.createElement("img");
+	imagen.src = element.image;
+	imagen.alt = `${element.name} logo`;
+	imagen.onerror = () => {
+		imagen.onerror = null;
+		imagen.src = fallbackImage;
+	};
+	container.appendChild(imagen);
+    
 });
+
