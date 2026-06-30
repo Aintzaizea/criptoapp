@@ -199,10 +199,15 @@ if (price_usd >= 1) {
 }
 
 cryptoData.forEach((element) => {
+    // crear el el contenedort de la card
+    const tarjetaCripto = document.createElement ("div")
+    tarjetaCripto.classList.add ("cripto-item");
+
+    // 
 	const p = document.createElement("p");
 	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd} - ${formatPrice(element.price_usd)}`;
-	container.appendChild(p);
-
+	
+    // 
 	const imagen = document.createElement("img");
 	imagen.src = element.image;
 	imagen.alt = `${element.name} logo`;
@@ -210,8 +215,11 @@ cryptoData.forEach((element) => {
 		imagen.onerror = null;
 		imagen.src = fallbackImage;
 	};
-	container.appendChild(imagen);
-    
+	
+    // Se añaden la imagen y el párrafo (ya creados arriba) a la tarjeta
+    tarjetaCripto.append(imagen, p);
+    // Se añade la tarjeta completa al contenedor principal
+    container.appendChild(tarjetaCripto);
 });
 
 
