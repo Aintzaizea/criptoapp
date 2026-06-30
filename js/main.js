@@ -184,9 +184,23 @@ const cryptoData = [
 const container = document.querySelector("#container");
 const fallbackImage = "./img/moneda.png";
 
+function formatPrice(price_usd) {
+if (price_usd >= 1) {
+    return price_usd.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+});
+} else {
+    return price_usd.toLocaleString('en-US', {
+        minimumFractionDigits: 6,
+        maximumFractionDigits: 8
+        });
+    }
+}
+
 cryptoData.forEach((element) => {
 	const p = document.createElement("p");
-	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd}`;
+	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd} - ${formatPrice(element.price_usd)}`;
 	container.appendChild(p);
 
 	const imagen = document.createElement("img");
@@ -199,4 +213,7 @@ cryptoData.forEach((element) => {
 	container.appendChild(imagen);
     
 });
+
+
+
 
