@@ -1,10 +1,13 @@
-*{
+
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+
+body {
     background-color: rgb(68, 68, 68);
     color: rgb(39, 38, 38);
     line-height: 1.4;
@@ -13,18 +16,19 @@ body{
     font-size: 14px;
 }
 
-#container img  {
-    width: 25px;
-    height: 25px;
-    
-}
 
 #container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
-    
 }
+
+#container img {
+    width: 25px;
+    height: 25px;
+}
+
+
 
 .cripto-item {
     background-color: #dfdada;
@@ -36,41 +40,45 @@ body{
     align-items: center;
     gap: 6px;
     transition: border-color 0.28s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    
 }
 
 
-.cripto-item.positivo:hover {
-    border-color: green;
-}
-
-.cripto-item.negativo:hover {
-    border-color: red;
-}
 
 span.positivo {
     color: green;
+    font-weight: 600;
 }
 
 span.negativo {
     color: red;
+    font-weight: 600;
 }
 
-.positivo::before {
+span.positivo::before {
     color: green;
     content: "\2191";
     font-size: 16px;
     font-weight: 600;
 }
 
-.negativo::before {
+span.negativo::before {
     color: red;
     content: "\2193";
     font-size: 16px;
     font-weight: 600;
 }
 
+.cripto-item.positivo:hover {
+    border: 2px solid rgb(6, 204, 6);
+}
 
+.cripto-item.negativo:hover {
+    border: 2px solid red;
+}
+
+
+
+/* TABLET */
 @media (min-width: 768px) {
     body {
         padding: 24px;
@@ -81,6 +89,7 @@ span.negativo {
     }
 }
 
+/* PC */
 @media (min-width: 1024px) {
     body {
         padding: 40px;
@@ -90,4 +99,5 @@ span.negativo {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 
