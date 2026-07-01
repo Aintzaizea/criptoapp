@@ -8,7 +8,7 @@
 
 
 body {
-    background-color: rgb(68, 68, 68);
+    background-color: rgb(34, 1, 49);
     color: rgb(39, 38, 38);
     line-height: 1.4;
     font-family: "Google Sans", sans-serif;
@@ -20,29 +20,27 @@ body {
 #container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
 }
 
 #container img {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
 }
-
 
 
 .cripto-item {
     background-color: #dfdada;
     border: 2px solid transparent;
-    border-radius: 16px;
-    padding: 16px;
+    border-radius: 80px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     transition: border-color 0.28s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-
-
 
 span.positivo {
     color: green;
@@ -57,14 +55,14 @@ span.negativo {
 span.positivo::before {
     color: green;
     content: "\2191";
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 span.negativo::before {
     color: red;
     content: "\2193";
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -76,6 +74,13 @@ span.negativo::before {
     border: 2px solid red;
 }
 
+#filtros{
+    display: flex;
+    justify-content: right;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    
+}
 
 
 /* TABLET */

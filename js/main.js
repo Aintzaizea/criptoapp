@@ -210,8 +210,21 @@ function formatMarket (market_cap_usd) {
 	return "$" + market_cap_usd.toFixed(2);
 }
 
+//CREAR EL FILTER POR POSITIVO O NEGATIVO
 
-// crear  el contenedor de la card
+function filtrarPorRendimiento(cryptoData, tipo) {
+    if (tipo === "positivo") {
+        return cryptoData.filter((elemento) => elemento.percent_change_24h > 0);
+    } else if (tipo === "negativo") {
+        return cryptoData.filter((elemento) => elemento.percent_change_24h < 0);
+    } else {
+        return cryptoData;
+    }
+}
+
+
+
+// crear  el contenedor de la card 
 	cryptoData.forEach((element) => {
     const tarjetaCripto = document.createElement ("div")
     tarjetaCripto.classList.add ("cripto-item");
@@ -238,7 +251,7 @@ function formatMarket (market_cap_usd) {
 			tarjetaCripto.classList.add("negativo");
     		spanPorcentaje.classList.add("negativo");
 	}
-	spanPorcentaje.textContent = `${element.percent_change_24h}`;
+	spanPorcentaje.textContent = ` ${element.percent_change_24h} %`;
 
     // Se añaden elementos (ya creados arriba) a la tarjeta
     tarjetaCripto.append(imagen, p, spanPorcentaje);
