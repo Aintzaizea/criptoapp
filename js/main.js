@@ -183,7 +183,8 @@ const cryptoData = [
 
 const container = document.querySelector("#container");
 const fallbackImage = "./img/moneda.png";
-
+ 
+//FORMATEAR PRECIO PARA VER DECIMALES
 function formatPrice(price_usd) {
 if (price_usd >= 1) {
     return price_usd.toLocaleString('en-US', {
@@ -198,14 +199,26 @@ if (price_usd >= 1) {
     }
 }
 
-cryptoData.forEach((element) => {
-    // crear  el contenedort de la card
+//PONER T (billones), B (miles de millones) O M(millones) PARA DIFERENTES CIFRAS
+function formatMarket (market_cap_usd) {
+	if (market_cap_usd >=1e12)
+		return "$" + (market_cap_usd / 1e12).toFixed (2) + "T";
+	if (market_cap_usd >= 1e9)
+		return "$" + (market_cap_usd / 1e9).toFixed (2) + "B";
+	if (market_cap_usd >=1e6)
+		return "$" + (market_cap_usd / 1e6).toFixed (2) + "M";
+	return "$" + market_cap_usd.toFixed(2);
+}
+
+
+// crear  el contenedor de la card
+	cryptoData.forEach((element) => {
     const tarjetaCripto = document.createElement ("div")
     tarjetaCripto.classList.add ("cripto-item");
 
     // creamos un párrafo con los elementos que queremos mostrar
 	const p = document.createElement("p");
-	p.textContent = `${element.name} - ${element.symbol} - ${element.percent_change_24h} - ${element.market_cap_usd} - ${formatPrice(element.price_usd)}`;
+	p.textContent = `${element.name} - ${element.symbol} - ${element.market_cap_usd} - ${formatPrice(element.price_usd)} - ${formatMarket(element.market_cap_usd)}`;
 	
     // mostramos la imagen alternativa por si da error 
 	const imagen = document.createElement("img");
@@ -215,11 +228,23 @@ cryptoData.forEach((element) => {
 		imagen.onerror = null;
 		imagen.src = fallbackImage;
 	};
-	
-    // Se añaden la imagen y el párrafo (ya creados arriba) a la tarjeta
-    tarjetaCripto.append(imagen, p);
+
+	//AÑADIMOS LA CLASE POSITIVO O NEGATIVO Y AÑADIMOS CLASE Y SPAN
+	const spanPorcentaje = document.createElement("span");
+		if (element.percent_change_24h > 0) {
+			tarjetaCripto.classList.add("positivo");
+    		spanPorcentaje.classList.add("positivo");
+		} else {
+			tarjetaCripto.classList.add("negativo");
+    		spanPorcentaje.classList.add("negativo");
+	}
+	spanPorcentaje.textContent = `${element.percent_change_24h}`;
+
+    // Se añaden elementos (ya creados arriba) a la tarjeta
+    tarjetaCripto.append(imagen, p, spanPorcentaje);
     // Se añade la tarjeta completa al contenedor principal
     container.appendChild(tarjetaCripto);
+
 });
 
 
