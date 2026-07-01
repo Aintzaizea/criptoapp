@@ -222,7 +222,7 @@ function filtrarPorRendimiento(cryptoData, tipo) {
     }
 }
 
-
+6+
 
 // crear  el contenedor de la card 
 	cryptoData.forEach((element) => {
